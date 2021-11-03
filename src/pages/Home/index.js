@@ -1,11 +1,16 @@
 import React from 'react'
+import Navbar from '../../components/Navbar'
 import Background from '../../components/Background'
+import { HomeContainer } from './styles'
 
-function Home() {
+const Home = () => {
   return (
     <>
       <Background />
-      <div className="Home">Home</div>
+      <HomeContainer>
+        <Navbar />
+        <div>Home</div>
+      </HomeContainer>
     </>
   )
 }
