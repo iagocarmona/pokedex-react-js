@@ -1,7 +1,13 @@
 import React from 'react'
+import Background from '../../components/Background'
 
 function Home() {
-  return <div className="Home">Home</div>
+  return (
+    <>
+      <Background />
+      <div className="Home">Home</div>
+    </>
+  )
 }
 
 export default Home
