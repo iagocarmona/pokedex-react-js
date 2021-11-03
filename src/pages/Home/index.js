@@ -24,7 +24,12 @@ const Home = () => {
       <Background />
       <HomeContainer>
         <Navbar />
-        <PokemonCard code="#1" name="Bulbasaur" badges={badges} />
+        <PokemonCard
+          code="#1"
+          name="Bulbasaur"
+          badges={badges}
+          image="https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png"
+        />
       </HomeContainer>
     </>
   )

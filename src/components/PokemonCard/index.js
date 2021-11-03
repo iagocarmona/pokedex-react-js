@@ -12,7 +12,7 @@ import {
 
 import Badges from '../Badge/index.js'
 
-const PokemonCard = ({ code, name, badges }) => {
+const PokemonCard = ({ code, name, badges, image }) => {
   return (
     <Container>
       <CardContainer>
@@ -25,7 +25,7 @@ const PokemonCard = ({ code, name, badges }) => {
         </CardInfo>
       </CardContainer>
       <CardImage>
-        <Photo src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png" />
+        <Photo src={image} />
       </CardImage>
     </Container>
   )
