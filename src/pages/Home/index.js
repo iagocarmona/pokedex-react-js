@@ -1,7 +1,16 @@
 import React from 'react'
+import Navbar from '../../components/Navbar'
+import { HomeContainer } from './styles'
 
-function Home() {
-  return <div className="Home">Home</div>
+const Home = () => {
+  return (
+    <>
+      <HomeContainer>
+        <Navbar />
+        <div>Home</div>
+      </HomeContainer>
+    </>
+  )
 }
 
 export default Home
