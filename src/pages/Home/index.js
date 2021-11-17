@@ -1,12 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from '../../components/Navbar'
 import Background from '../../components/Background'
-import { HomeContainer } from './styles'
+import { CardContainer, HomeContainer } from './styles'
 import { useTheme } from 'styled-components'
 import PokemonCard from '../../components/PokemonCard'
+import useAxios from '../../hooks/useAxios'
 
 const Home = () => {
+  const [pokemons, setPokemons] = useState([])
   const theme = useTheme()
+  const axios = useAxios()
   const [badges] = useState([
     {
       id: 1,
@@ -19,17 +22,30 @@ const Home = () => {
       color: theme.color.type.poison,
     },
   ])
+
+  useEffect(() => {
+    const featch = async () => {
+      setPokemons(await axios.useGet('pokemon'))
+    }
+    featch()
+    console.log(pokemons)
+  }, [])
+
   return (
     <>
       <Background />
       <HomeContainer>
         <Navbar />
-        <PokemonCard
-          code="#1"
-          name="Bulbasaur"
-          badges={badges}
-          image="https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png"
-        />
+        <CardContainer>
+          {pokemons.map((pokemon) => (
+            <PokemonCard
+              code="#1"
+              name={pokemon.name}
+              badges={badges}
+              image={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png`}
+            />
+          ))}
+        </CardContainer>
       </HomeContainer>
     </>
   )
