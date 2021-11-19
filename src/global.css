@@ -20,3 +20,7 @@
   font-family: 'SF Pro Display Bold';
   src: url('./assets/fonts/sf-pro-display-bold.ttf');
 }
+
+body {
+  background-color: white;
+}

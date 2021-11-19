@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Container, Icon, Name } from './styles'
+import { useTheme } from 'styled-components'
 import BadgeIcons from '../../assets/types'
 
 const Badges = ({ badgesList }) => {
-  const [badgesListFormated, setBadgesListFormated] = useState([])
+  const theme = useTheme()
 
-  useEffect(() => {
-    setBadgesListFormated(badgesList)
-  }, [badgesList])
+  if (!badgesList) {
+    return <></>
+  }
 
-  return badgesListFormated.map((badge) => (
-    <Container color={badge.color} key={badge.id}>
-      <Icon icon={BadgeIcons[badge.name.toLowerCase()]} />
-      <Name>{badge.name}</Name>
+  return badgesList.map((badge, index) => (
+    <Container color={theme.color.type[badge.type.name]} key={index}>
+      <Icon icon={BadgeIcons[badge.type?.name]} />
+      <Name>{badge.type?.name}</Name>
     </Container>
   ))
 }
