@@ -10,11 +10,19 @@ import {
   Photo,
 } from './styles.js'
 
+import { useTheme } from 'styled-components'
+
 import Badges from '../Badge/index.js'
 
-const PokemonCard = ({ code, name, badges, image }) => {
+const PokemonCard = ({ code, name, badges, image, color }) => {
+  const theme = useTheme()
+
   return (
-    <Container>
+    <Container
+      color={
+        theme.color.backgroundType[color ? color[0].type.name : 'transparent']
+      }
+    >
       <CardContainer>
         <CardInfo>
           <Code>{code}</Code>

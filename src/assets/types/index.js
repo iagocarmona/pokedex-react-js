@@ -14,6 +14,7 @@ import { ReactComponent as Ice } from './ice.svg'
 import { ReactComponent as Normal } from './normal.svg'
 import { ReactComponent as Poison } from './poison.svg'
 import { ReactComponent as Psychic } from './psychic.svg'
+import { ReactComponent as Rock } from './rock.svg'
 import { ReactComponent as Steel } from './steel.svg'
 import { ReactComponent as Water } from './water.svg'
 
@@ -33,6 +34,7 @@ export default {
   normal: <Normal />,
   poison: <Poison />,
   psychic: <Psychic />,
+  rock: <Rock />,
   steel: <Steel />,
   water: <Water />,
 }

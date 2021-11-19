@@ -1,52 +1,113 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import Navbar from '../../components/Navbar'
 import Background from '../../components/Background'
 import { CardContainer, HomeContainer } from './styles'
-import { useTheme } from 'styled-components'
 import PokemonCard from '../../components/PokemonCard'
-import useAxios from '../../hooks/useAxios'
+import api from '../../services/api'
+import InfiniteScroll from 'react-infinite-scroll-component'
+import Loading from '../../components/Loading'
 
 const Home = () => {
-  const [pokemons, setPokemons] = useState([])
-  const theme = useTheme()
-  const axios = useAxios()
-  const [badges] = useState([
-    {
-      id: 1,
-      name: 'Grass',
-      color: theme.color.type.grass,
-    },
-    {
-      id: 2,
-      name: 'Poison',
-      color: theme.color.type.poison,
-    },
-  ])
+  const [pokemonName, setPokemonName] = useState([])
+  const [pokemonInfo, setPokemonInfo] = useState([])
+  const [pokemonLimit] = useState(20)
+  const [pokemonOffSet, setPokemonOffSet] = useState(pokemonLimit)
+  const [isLoading, setIsLoading] = useState(false)
+
+  const handleGetPokemonStats = useCallback((pokemons) => {
+    try {
+      pokemons.map((pokemon) =>
+        api.get(`/pokemon/${pokemon.name}`).then((response) => {
+          const result = response.data
+          setPokemonInfo((prevState) =>
+            [...prevState, result].sort((a, b) => {
+              return a.id - b.id
+            })
+          )
+        })
+      )
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setIsLoading(false)
+    }
+  }, [])
+
+  const handleGetPokemonName = useCallback(async () => {
+    try {
+      setIsLoading(true)
+      const response = await api.get('pokemon', {
+        params: {
+          limit: pokemonLimit,
+        },
+      })
+      if (response) {
+        setPokemonName(response.data.results)
+        handleGetPokemonStats(response.data.results)
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }, [handleGetPokemonStats, pokemonLimit])
+
+  const handleLoadNewPokemons = useCallback(async () => {
+    try {
+      setIsLoading(true)
+      const response = await api.get('pokemon', {
+        params: {
+          limit: pokemonLimit,
+          offset: pokemonOffSet,
+        },
+      })
+      if (response) {
+        setPokemonName((prevState) => [...prevState, ...response.data.results])
+        handleGetPokemonStats(response.data.results)
+        setPokemonOffSet((prevState) => prevState + pokemonLimit)
+      }
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setIsLoading(false)
+    }
+  }, [handleGetPokemonStats, pokemonLimit, pokemonOffSet])
 
   useEffect(() => {
-    const featch = async () => {
-      setPokemons(await axios.useGet('pokemon'))
-    }
-    featch()
-    console.log(pokemons)
+    handleGetPokemonName()
   }, [])
 
   return (
     <>
-      <Background />
-      <HomeContainer>
-        <Navbar />
-        <CardContainer>
-          {pokemons.map((pokemon) => (
-            <PokemonCard
-              code="#1"
-              name={pokemon.name}
-              badges={badges}
-              image={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png`}
-            />
-          ))}
-        </CardContainer>
-      </HomeContainer>
+      <InfiniteScroll
+        dataLength={pokemonInfo.length}
+        next={handleLoadNewPokemons}
+        hasMore={isLoading ? false : true}
+        scrollThreshold={0.9}
+      >
+        <Background />
+        <HomeContainer>
+          <Navbar />
+          <CardContainer>
+            {isLoading ? <Loading /> : <></>}
+            {pokemonInfo ? (
+              pokemonName.map((pokemon, index) => (
+                <PokemonCard
+                  color={pokemonInfo[index]?.types}
+                  key={index}
+                  code={`#${pokemonInfo[index]?.id}`}
+                  name={pokemon.name}
+                  badges={pokemonInfo[index]?.types}
+                  image={
+                    pokemonInfo[index]?.sprites.other['official-artwork']
+                      .front_default
+                  }
+                />
+              ))
+            ) : (
+              <h1>Loading...</h1>
+            )}
+          </CardContainer>
+        </HomeContainer>
+      </InfiniteScroll>
     </>
   )
 }
