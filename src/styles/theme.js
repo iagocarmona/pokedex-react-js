@@ -48,6 +48,7 @@ const theme = {
       rock: '#D4C294',
       steel: '#4C91B2',
       water: '#58ABF6',
+      tranparent: 'transparent',
     },
     height: {
       short: '#FFC5E6',
