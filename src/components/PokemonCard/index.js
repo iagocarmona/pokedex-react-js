@@ -9,7 +9,6 @@ import {
   CardImage,
   Photo,
 } from './styles.js'
-
 import { useTheme } from 'styled-components'
 
 import Badges from '../Badge/index.js'
@@ -32,7 +31,7 @@ const PokemonCard = ({ code, name, badges, image, color }) => {
           </BadgesContainer>
         </CardInfo>
       </CardContainer>
-      <CardImage>
+      <CardImage to={`pokemon/${name}`}>
         <Photo src={image} />
       </CardImage>
     </Container>

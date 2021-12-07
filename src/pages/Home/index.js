@@ -6,6 +6,7 @@ import PokemonCard from '../../components/PokemonCard'
 import api from '../../services/api'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import Loading from '../../components/Loading'
+import { Capitalize } from '../../utils/strFormat'
 
 const Home = () => {
   const [pokemonName, setPokemonName] = useState([])
@@ -73,7 +74,7 @@ const Home = () => {
 
   useEffect(() => {
     handleGetPokemonName()
-  }, [])
+  }, [handleGetPokemonName])
 
   return (
     <>
@@ -94,7 +95,7 @@ const Home = () => {
                   color={pokemonInfo[index]?.types}
                   key={index}
                   code={`#${pokemonInfo[index]?.id}`}
-                  name={pokemon.name}
+                  name={Capitalize(pokemon.name)}
                   badges={pokemonInfo[index]?.types}
                   image={
                     pokemonInfo[index]?.sprites.other['official-artwork']
