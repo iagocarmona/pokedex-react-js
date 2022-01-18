@@ -8,6 +8,7 @@ export const Container = styled.div`
   background-color: ${({ color }) => color};
 `
 export const PokemonName = styled.h1`
+  z-index: 2;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,3 +36,8 @@ export const VectorStyled = styled(Vector)`
 `
 
 export const VectorLink = styled(Link)``
+
+export const PokemonContainer = styled.div`
+  /* background-color: red; */
+  z-index: 0;
+`
