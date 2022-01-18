@@ -42,6 +42,10 @@ const buttonglow = keyframes`
 `
 
 export const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
   position: fixed;
   transform: translate(-50%, -50%);
   z-index: 1;
@@ -56,8 +60,6 @@ export const MainBall = styled.div`
   position: relative;
   width: 400px;
   height: 400px;
-  top: 33%;
-  left: 40%;
   background-color: #fff;
   border: 25px solid #000;
   border-radius: 50%;

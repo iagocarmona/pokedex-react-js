@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const ChangeCard = styled.div`
   display: flex;
-  margin-top: 1rem;
+  margin-top: 4rem;
   width: 100%;
   justify-content: space-between;
   padding: 0 15rem;

@@ -10,7 +10,7 @@ export const Container = styled.div`
 `
 export const PokemonName = styled.h1`
   position: relative;
-  z-index: 2;
+  z-index: 1;
   display: flex;
   justify-content: center;
   align-items: center;
