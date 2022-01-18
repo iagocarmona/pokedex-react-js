@@ -4,8 +4,8 @@ export const ChangeCard = styled.div`
   display: flex;
   margin-top: 4rem;
   width: 100%;
-  justify-content: space-between;
-  padding: 0 15rem;
+  justify-content: space-around;
+
   button {
     position: relative;
     border: 0;
@@ -14,9 +14,11 @@ export const ChangeCard = styled.div`
     background: none;
     font-size: 35px;
     line-height: 38px;
+    margin-bottom: 2px;
     color: #ffffff;
     opacity: 0.4;
     text-transform: capitalize;
+    cursor: pointer;
 
     img {
       position: absolute;
@@ -26,6 +28,10 @@ export const ChangeCard = styled.div`
       margin-left: auto;
       margin-right: auto;
       z-index: 1;
+    }
+    :hover {
+      color: #ffffff;
+      opacity: 1;
     }
   }
   .active {
