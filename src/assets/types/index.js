@@ -18,7 +18,7 @@ import { ReactComponent as Rock } from './rock.svg'
 import { ReactComponent as Steel } from './steel.svg'
 import { ReactComponent as Water } from './water.svg'
 
-export default {
+const Types = {
   bug: <Bug />,
   dark: <Dark />,
   dragon: <Dragon />,
@@ -38,3 +38,4 @@ export default {
   steel: <Steel />,
   water: <Water />,
 }
+export default Types
