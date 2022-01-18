@@ -1,9 +1,16 @@
 import React, { useCallback, useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import api from '../../services/api'
-import { Container, PokemonName, VectorStyled, VectorLink } from './styles'
+import {
+  Container,
+  PokemonName,
+  VectorStyled,
+  VectorLink,
+  PokemonContainer,
+} from './styles'
 import { useTheme } from 'styled-components'
 import Loading from '../../components/Loading'
+import PokemonAbout from '../../components/PokemonAbout'
 
 const About = () => {
   const [pokemonInfo, setPokemonInfo] = useState([])
@@ -58,6 +65,18 @@ const About = () => {
             </VectorLink>
             {name}
           </PokemonName>
+          <PokemonContainer>
+            <PokemonAbout
+              color={pokemonInfo?.types}
+              // key={index}
+              code={`#${pokemonInfo?.id}`}
+              name={name}
+              badges={pokemonInfo?.types}
+              image={
+                pokemonInfo?.sprites?.other['official-artwork'].front_default
+              }
+            />
+          </PokemonContainer>
         </Container>
       )}
     </>
