@@ -53,7 +53,7 @@ export const BadgesContainer = styled.div`
 export const Photo = styled.img`
   position: absolute;
   top: -25%;
-  width: 15rem;
+  width: 15.5rem;
   background-repeat: no-repeat;
   background-size: 15.313rem 17.813rem;
   filter: grayscale(100%);
