@@ -6,6 +6,7 @@ export const Container = styled.div`
   width: 100%;
   height: 100vh;
   background-color: ${({ color }) => color};
+  overflow: hidden;
 `
 export const PokemonName = styled.h1`
   position: relative;
