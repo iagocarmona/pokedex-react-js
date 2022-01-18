@@ -8,6 +8,7 @@ export const Container = styled.div`
   background-color: ${({ color }) => color};
 `
 export const PokemonName = styled.h1`
+  position: relative;
   z-index: 2;
   display: flex;
   justify-content: center;
@@ -15,7 +16,7 @@ export const PokemonName = styled.h1`
   font-size: 1400%;
   background: -webkit-linear-gradient(
     white,
-    transparent,
+    rgba(255, 255, 255, 0.05),
     ${({ color }) => color}
   );
   background-size: 100% 140%;
@@ -33,11 +34,16 @@ export const VectorStyled = styled(Vector)`
   width: 4rem;
   height: 3rem;
   fill: #fff;
+  &:hover {
+    width: 4.3rem;
+    height: 3.3rem;
+    transition: 0.2s;
+  }
 `
 
 export const VectorLink = styled(Link)``
 
-export const PokemonContainer = styled.div`
-  /* background-color: red; */
-  z-index: 0;
+export const NameField = styled.div`
+  /* position: relative
+z-index: 2; */
 `
