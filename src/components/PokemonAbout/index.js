@@ -9,20 +9,13 @@ import {
   CardImage,
   Photo,
 } from './styles.js'
-import { useTheme } from 'styled-components'
 
 import Badges from '../Badge/index.js'
 
-const PokemonAbout = ({ code, name, badges, image, color }) => {
-  const theme = useTheme()
-
+const PokemonAbout = ({ code, name, badges, image }) => {
   return (
-    <Container
-      color={
-        theme.color.backgroundType[color ? color[0].type.name : 'transparent']
-      }
-    >
-      <CardImage to={`pokemon/${name}`}>
+    <Container>
+      <CardImage>
         <Photo src={image} />
       </CardImage>
       <CardContainer>
