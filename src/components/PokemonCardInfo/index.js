@@ -2,7 +2,17 @@ import React, { useEffect, useState } from 'react'
 import { Container, Pokedex, ChangeCard } from './styles.js'
 import Pokeball from '../../assets/patterns/pokeballAbout.svg'
 
-const PokemonCardInfo = ({ color, description }) => {
+const PokemonCardInfo = ({
+  color,
+  description,
+  species,
+  height,
+  weight,
+  weaknesses,
+  catchRate,
+  baseFriendship,
+  growthRate,
+}) => {
   const [isAboutVisible, setIsAboutVisible] = useState(true)
   const [isStatsVisible, setIsStatsVisible] = useState(false)
   const [isEvolutionVisible, setIsEvolutionVisible] = useState(false)
@@ -60,9 +70,37 @@ const PokemonCardInfo = ({ color, description }) => {
             <Pokedex color={color}>
               <div>
                 <h3>Pokedex Data</h3>
+                <div>
+                  <h2>Species</h2>
+                  <p>{species}</p>
+                </div>
+                <div>
+                  <h2>Height</h2>
+                  <p>{height}</p>
+                </div>
+                <div>
+                  <h2>Weight</h2>
+                  <p>{weight}</p>
+                </div>
+                <div>
+                  <h2>Weaknesses</h2>
+                  <p>{weaknesses}</p>
+                </div>
               </div>
               <div>
                 <h3>Training</h3>
+                <div>
+                  <h2>Catch Rate</h2>
+                  <p>{catchRate}</p>
+                </div>
+                <div>
+                  <h2>Base Friendship</h2>
+                  <p>{baseFriendship}</p>
+                </div>
+                <div>
+                  <h2>Growth Rate</h2>
+                  <p>{growthRate}</p>
+                </div>
               </div>
             </Pokedex>
           </>

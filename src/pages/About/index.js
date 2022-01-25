@@ -21,6 +21,7 @@ const About = () => {
       api.get(`/pokemon/${name.toLowerCase()}`).then((response) => {
         const result = response.data
         setPokemonInfo(result)
+        console.log(result)
       })
     } catch (error) {
       console.log(error)
@@ -111,6 +112,13 @@ const About = () => {
               ]
             }
             description={pokemonDescription}
+            species="testeindosim"
+            height="23"
+            weight="34kg"
+            weaknesses="testando"
+            catchRate="45"
+            baseFriendship="70"
+            growthRate="testando"
           />
         </Container>
       )}
