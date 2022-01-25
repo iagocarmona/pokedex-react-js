@@ -10,7 +10,6 @@ import PokemonCardInfo from '../../components/PokemonCardInfo'
 const About = () => {
   const [pokemonInfo, setPokemonInfo] = useState([])
   const [pokemonDescription, setPokemonDescription] = useState('')
-
   const [isLoading, setIsLoading] = useState(false)
   const { name } = useParams()
   const theme = useTheme()
@@ -112,9 +111,9 @@ const About = () => {
               ]
             }
             description={pokemonDescription}
-            species="testeindosim"
-            height="23"
-            weight="34kg"
+            species={pokemonInfo.species?.name}
+            height={pokemonInfo.height}
+            weight={pokemonInfo.weight + 'kg'}
             weaknesses="testando"
             catchRate="45"
             baseFriendship="70"

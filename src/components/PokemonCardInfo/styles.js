@@ -89,19 +89,10 @@ export const Pokedex = styled.div`
       /* width: 150%; */
       font-weight: light;
       color: #404040;
-      margin-top: 1.2rem;
+      /* margin-top: 5px; */
       /* margin-right: 2rem; */
       white-space: nowrap;
       div {
-        p {
-          color: ${({ theme }) => theme.color.greyLight};
-          font-weight: 500;
-          display: flex;
-          width: 100%;
-          font-size: 1.3rem;
-          height: 0;
-          justify-content: flex-end;
-        }
       }
     }
     h3 {
@@ -109,6 +100,7 @@ export const Pokedex = styled.div`
       font-size: 28px;
       line-height: 31px;
       text-align: left;
+      margin-bottom: 26px;
     }
   }
 `
@@ -117,6 +109,15 @@ export const DescriptionInfo = styled.div`
   div {
     & + div {
       justify-content: left;
+      p {
+        color: ${({ theme }) => theme.color.greyLight};
+        /* font-weight: 500; */
+        display: flex;
+        /* width: 100%; */
+        font-size: 1.3rem;
+        /* height: 0; */
+        justify-content: flex-end;
+      }
     }
   }
 `
