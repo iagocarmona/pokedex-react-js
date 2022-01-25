@@ -21,6 +21,7 @@ const About = () => {
       api.get(`/pokemon/${name.toLowerCase()}`).then((response) => {
         const result = response.data
         setPokemonInfo(result)
+        console.log(result)
       })
     } catch (error) {
       console.log(error)
@@ -36,12 +37,17 @@ const About = () => {
         const result = response.data
         if (id) {
           const pokemonSelected = result.find((pokemon) => pokemon.id === id)
-          if (pokemonSelected.description.trim() === '') {
+          if (!pokemonSelected) {
+            return setPokemonDescription(
+              'Random text to fill a field with random words for a random pokemon. Such text was written and designed in a random way, its only objective is to fill in this missing information with random words until a good amount of random characters is obtained.'
+            )
+          }
+          if (pokemonSelected?.description.trim() === '') {
             setPokemonDescription(
               'Random text to fill a field with random words for a random pokemon. Such text was written and designed in a random way, its only objective is to fill in this missing information with random words until a good amount of random characters is obtained.'
             )
           } else {
-            setPokemonDescription(pokemonSelected.description)
+            setPokemonDescription(pokemonSelected?.description)
           }
         }
       })
@@ -106,6 +112,13 @@ const About = () => {
               ]
             }
             description={pokemonDescription}
+            species="testeindosim"
+            height="23"
+            weight="34kg"
+            weaknesses="testando"
+            catchRate="45"
+            baseFriendship="70"
+            growthRate="testando"
           />
         </Container>
       )}

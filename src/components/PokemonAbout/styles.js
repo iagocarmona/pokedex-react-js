@@ -21,7 +21,7 @@ export const CardInfo = styled.div`
 
 export const Code = styled.h2`
   max-width: 1.25rem;
-  color: ${({ theme }) => theme.color.blackMedium};
+  color: #404040;
   font-weight: 700;
   font-size: 1.125rem;
   line-height: 0.875rem;
@@ -56,7 +56,6 @@ export const BadgesContainer = styled.div`
 export const Photo = styled.img`
   position: relative;
   width: 23rem;
-  /* padding: 3rem; */
   z-index: 1;
   background-repeat: no-repeat;
 `

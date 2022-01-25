@@ -4,8 +4,8 @@ export const ChangeCard = styled.div`
   display: flex;
   margin-top: 4rem;
   width: 100%;
-  justify-content: space-between;
-  padding: 0 15rem;
+  justify-content: space-around;
+
   button {
     position: relative;
     border: 0;
@@ -14,9 +14,11 @@ export const ChangeCard = styled.div`
     background: none;
     font-size: 35px;
     line-height: 38px;
+    margin-bottom: 2px;
     color: #ffffff;
     opacity: 0.4;
     text-transform: capitalize;
+    cursor: pointer;
 
     img {
       position: absolute;
@@ -26,6 +28,10 @@ export const ChangeCard = styled.div`
       margin-left: auto;
       margin-right: auto;
       z-index: 1;
+    }
+    :hover {
+      color: #ffffff;
+      opacity: 1;
     }
   }
   .active {
@@ -61,13 +67,56 @@ export const Container = styled.div`
 
 export const Pokedex = styled.div`
   display: flex;
-  width: 100%;
-  justify-content: space-evenly;
+  width: 60%;
+  margin: 0 auto;
+  justify-content: space-around;
+  gap: 50px;
+  /* padding: 0 25%; */
   div {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    text-align: center;
+    div {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      align-items: baseline;
+      flex-direction: row;
+    }
+    h2 {
+      display: flex;
+      /* width: 150%; */
+      font-weight: light;
+      color: #404040;
+      margin-top: 1.2rem;
+      /* margin-right: 2rem; */
+      white-space: nowrap;
+      div {
+        p {
+          color: ${({ theme }) => theme.color.greyLight};
+          font-weight: 500;
+          display: flex;
+          width: 100%;
+          font-size: 1.3rem;
+          height: 0;
+          justify-content: flex-end;
+        }
+      }
+    }
     h3 {
       color: ${({ color }) => color};
       font-size: 28px;
       line-height: 31px;
+      text-align: left;
+    }
+  }
+`
+
+export const DescriptionInfo = styled.div`
+  div {
+    & + div {
+      justify-content: left;
     }
   }
 `

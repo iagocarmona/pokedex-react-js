@@ -26,12 +26,16 @@ export const PokemonName = styled.h1`
   -webkit-background-clip: text;
   -webkit-text-stroke: 10px transparent;
   color: ${({ color }) => color};
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `
 
 export const VectorStyled = styled(Vector)`
   position: fixed;
+  z-index: 2;
   left: 1%;
   top: 10%;
+  cursor: pointer;
   width: 4rem;
   height: 3rem;
   fill: #fff;
@@ -43,8 +47,3 @@ export const VectorStyled = styled(Vector)`
 `
 
 export const VectorLink = styled(Link)``
-
-export const NameField = styled.div`
-  /* position: relative
-z-index: 2; */
-`

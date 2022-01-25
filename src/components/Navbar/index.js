@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavbarContainer, SearchContainer, Title, Search } from './styles'
 
-const Navbar = () => {
+const Navbar = ({ setValue }) => {
   return (
     <>
       <NavbarContainer>
@@ -12,6 +12,7 @@ const Navbar = () => {
           <Search
             type="text"
             placeholder="O que você está procurando ?"
+            onChange={(event) => setValue(event.target.value)}
           ></Search>
         </SearchContainer>
       </NavbarContainer>

@@ -14,6 +14,7 @@ const Home = () => {
   const [pokemonLimit] = useState(20)
   const [pokemonOffSet, setPokemonOffSet] = useState(pokemonLimit)
   const [isLoading, setIsLoading] = useState(false)
+  const [searchInput, setSearchInput] = useState('')
 
   const handleGetPokemonStats = useCallback((pokemons) => {
     try {
@@ -34,22 +35,42 @@ const Home = () => {
     }
   }, [])
 
-  const handleGetPokemonName = useCallback(async () => {
-    try {
-      setIsLoading(true)
-      const response = await api.get('pokemon', {
-        params: {
-          limit: pokemonLimit,
-        },
-      })
-      if (response) {
-        setPokemonName(response.data.results)
-        handleGetPokemonStats(response.data.results)
+  const handleGetPokemonName = useCallback(
+    async (filteredPokemons) => {
+      try {
+        setIsLoading(true)
+        if (filteredPokemons) {
+          setPokemonName(filteredPokemons)
+          setPokemonInfo([])
+          filteredPokemons.map((pokemon) =>
+            api.get(`/pokemon/${pokemon.name}`).then((response) => {
+              const result = response.data
+              setPokemonInfo((prevState) =>
+                [...prevState, result].sort((a, b) => {
+                  return a.id - b.id
+                })
+              )
+            })
+          )
+        } else {
+          const response = await api.get('pokemon', {
+            params: {
+              limit: pokemonLimit,
+            },
+          })
+          if (response) {
+            setPokemonName(response.data.results)
+            handleGetPokemonStats(response.data.results)
+          }
+        }
+      } catch (error) {
+        console.log(error)
+      } finally {
+        setIsLoading(false)
       }
-    } catch (error) {
-      console.log(error)
-    }
-  }, [handleGetPokemonStats, pokemonLimit])
+    },
+    [handleGetPokemonStats, pokemonLimit]
+  )
 
   const handleLoadNewPokemons = useCallback(async () => {
     try {
@@ -73,6 +94,22 @@ const Home = () => {
   }, [handleGetPokemonStats, pokemonLimit, pokemonOffSet])
 
   useEffect(() => {
+    console.log(searchInput)
+    api.get('/pokemon?limit=5000').then((response) => {
+      const result = response.data.results
+      const searchValue = searchInput.trim().toLowerCase()
+
+      if (searchValue.length > 2) {
+        const filteredPokemons = result.filter((pokemon) =>
+          pokemon.name.includes(searchValue)
+        )
+        console.log(filteredPokemons)
+        handleGetPokemonName(filteredPokemons)
+      }
+    })
+  }, [searchInput, handleGetPokemonName])
+
+  useEffect(() => {
     handleGetPokemonName()
   }, [handleGetPokemonName])
 
@@ -80,13 +117,13 @@ const Home = () => {
     <>
       <InfiniteScroll
         dataLength={pokemonInfo.length}
-        next={handleLoadNewPokemons}
+        next={searchInput.trim().length <= 2 && handleLoadNewPokemons}
         hasMore={isLoading ? false : true}
         scrollThreshold={0.9}
       >
         <Background />
         <HomeContainer>
-          <Navbar />
+          <Navbar setValue={setSearchInput} />
           <CardContainer>
             {isLoading ? <Loading /> : <></>}
             {pokemonInfo ? (
