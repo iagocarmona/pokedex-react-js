@@ -67,16 +67,22 @@ export const Container = styled.div`
 
 export const Pokedex = styled.div`
   display: flex;
-  width: 100%;
+  width: 60%;
+  margin: 0 auto;
   justify-content: space-around;
+  gap: 50px;
+  /* padding: 0 25%; */
   div {
+    display: flex;
     width: 100%;
+    flex-direction: column;
+    text-align: center;
     div {
       display: flex;
       justify-content: space-between;
       width: 100%;
       align-items: baseline;
-      flex-direction: column;
+      flex-direction: row;
     }
     h2 {
       display: flex;
@@ -102,6 +108,15 @@ export const Pokedex = styled.div`
       color: ${({ color }) => color};
       font-size: 28px;
       line-height: 31px;
+      text-align: left;
+    }
+  }
+`
+
+export const DescriptionInfo = styled.div`
+  div {
+    & + div {
+      justify-content: left;
     }
   }
 `

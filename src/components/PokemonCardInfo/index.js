@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Pokedex, ChangeCard } from './styles.js'
+import { Container, Pokedex, ChangeCard, DescriptionInfo } from './styles.js'
 import Pokeball from '../../assets/patterns/pokeballAbout.svg'
 
 const PokemonCardInfo = ({
@@ -70,37 +70,65 @@ const PokemonCardInfo = ({
             <Pokedex color={color}>
               <div>
                 <h3>Pokedex Data</h3>
-                <div>
-                  <h2>Species</h2>
-                  <p>{species}</p>
-                </div>
-                <div>
-                  <h2>Height</h2>
-                  <p>{height}</p>
-                </div>
-                <div>
-                  <h2>Weight</h2>
-                  <p>{weight}</p>
-                </div>
-                <div>
-                  <h2>Weaknesses</h2>
-                  <p>{weaknesses}</p>
-                </div>
+                <DescriptionInfo>
+                  <div>
+                    <h2>Species</h2>
+                  </div>
+                  <div>
+                    <p>{species}</p>
+                  </div>
+                </DescriptionInfo>
+                <DescriptionInfo>
+                  <div>
+                    <h2>Height</h2>
+                  </div>
+                  <div>
+                    <p>{height}</p>
+                  </div>
+                </DescriptionInfo>
+                <DescriptionInfo>
+                  <div>
+                    <h2>Weight</h2>
+                  </div>
+                  <div>
+                    <p>{weight}</p>
+                  </div>
+                </DescriptionInfo>
+                <DescriptionInfo>
+                  <div>
+                    <h2>Weaknesses</h2>
+                  </div>
+                  <div>
+                    <p>{weaknesses}</p>
+                  </div>
+                </DescriptionInfo>
               </div>
               <div>
                 <h3>Training</h3>
-                <div>
-                  <h2>Catch Rate</h2>
-                  <p>{catchRate}</p>
-                </div>
-                <div>
-                  <h2>Base Friendship</h2>
-                  <p>{baseFriendship}</p>
-                </div>
-                <div>
-                  <h2>Growth Rate</h2>
-                  <p>{growthRate}</p>
-                </div>
+                <DescriptionInfo>
+                  <div>
+                    <h2>Catch Rate</h2>
+                  </div>
+                  <div>
+                    <p>{catchRate}</p>
+                  </div>
+                </DescriptionInfo>
+                <DescriptionInfo>
+                  <div>
+                    <h2>Base Friendship</h2>
+                  </div>
+                  <div>
+                    <p>{baseFriendship}</p>
+                  </div>
+                </DescriptionInfo>
+                <DescriptionInfo>
+                  <div>
+                    <h2>Growth Rate</h2>
+                  </div>
+                  <div>
+                    <p>{growthRate}</p>
+                  </div>
+                </DescriptionInfo>
               </div>
             </Pokedex>
           </>
