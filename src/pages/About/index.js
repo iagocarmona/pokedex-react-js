@@ -57,6 +57,15 @@ const About = () => {
     }
   }, [])
 
+  const heightFormated = () => {
+    if (pokemonInfo.height < 10) {
+      return '0.' + pokemonInfo.height + ' m'
+    } else {
+      let height = pokemonInfo.height / 10
+      return height + ' m'
+    }
+  }
+
   useEffect(() => {
     handleGetPokemonStats(name)
   }, [name, handleGetPokemonStats])
@@ -112,8 +121,8 @@ const About = () => {
             }
             description={pokemonDescription}
             species={pokemonInfo.species?.name}
-            height={pokemonInfo.height}
-            weight={pokemonInfo.weight + 'kg'}
+            height={heightFormated()}
+            weight={pokemonInfo.weight / 10 + ' kg'}
             weaknesses="testando"
             catchRate="45"
             baseFriendship="70"
