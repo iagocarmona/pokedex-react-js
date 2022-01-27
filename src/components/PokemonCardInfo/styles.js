@@ -114,3 +114,7 @@ export const DescriptionInfo = styled.div`
     }
   }
 `
+export const TypeWrapper = styled.div`
+  width: 100%;
+  gap: 0.5rem;
+`

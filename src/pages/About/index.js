@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from 'react'
+import React, { useCallback, useState, useEffect, useDebugValue } from 'react'
 import { useParams } from 'react-router-dom'
 import api, { apidb } from '../../services/api'
 import { Container, PokemonName, VectorStyled, VectorLink } from './styles'
@@ -11,6 +11,7 @@ const About = () => {
   const [pokemonInfo, setPokemonInfo] = useState([])
   const [pokemonDescription, setPokemonDescription] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const [pokemonWeakness, setPokemonWeakness] = useState()
   const { name } = useParams()
   const theme = useTheme()
 
@@ -20,6 +21,7 @@ const About = () => {
       api.get(`/pokemon/${name.toLowerCase()}`).then((response) => {
         const result = response.data
         setPokemonInfo(result)
+        handleGetPokemonWeakness(result?.types[0]?.type?.name)
         console.log(result)
       })
     } catch (error) {
@@ -49,6 +51,21 @@ const About = () => {
             setPokemonDescription(pokemonSelected?.description)
           }
         }
+      })
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setIsLoading(false)
+    }
+  }, [])
+
+  const handleGetPokemonWeakness = useCallback((pokemon) => {
+    try {
+      setIsLoading(true)
+      api.get(`type/${pokemon}`).then((response) => {
+        const result = response.data
+        setPokemonWeakness(result)
+        console.log(result)
       })
     } catch (error) {
       console.log(error)
@@ -114,8 +131,8 @@ const About = () => {
           <PokemonCardInfo
             color={
               theme.color.backgroundType[
-                pokemonInfo.types
-                  ? `${pokemonInfo.types[0]?.type?.name}`
+                pokemonInfo?.types
+                  ? `${pokemonInfo?.types[0]?.type?.name}`
                   : 'transparent'
               ]
             }
@@ -123,7 +140,7 @@ const About = () => {
             species={pokemonInfo.species?.name}
             height={heightFormated()}
             weight={pokemonInfo.weight / 10 + ' kg'}
-            weaknesses="testando"
+            weaknesses={pokemonWeakness?.damage_relations?.double_damage_from}
             catchRate="45"
             baseFriendship="70"
             growthRate="testando"

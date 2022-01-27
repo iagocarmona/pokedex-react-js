@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Pokedex, ChangeCard, DescriptionInfo } from './styles.js'
+import {
+  Container,
+  Pokedex,
+  ChangeCard,
+  DescriptionInfo,
+  TypeWrapper,
+} from './styles.js'
 import Pokeball from '../../assets/patterns/pokeballAbout.svg'
+import TypeIcons from '../TypeIcons/index.js'
 
 const PokemonCardInfo = ({
   color,
@@ -98,9 +105,9 @@ const PokemonCardInfo = ({
                   <div>
                     <h2>Weaknesses</h2>
                   </div>
-                  <div>
-                    <p>{weaknesses}</p>
-                  </div>
+                  <TypeWrapper>
+                    <TypeIcons badgesList={weaknesses} />
+                  </TypeWrapper>
                 </DescriptionInfo>
               </div>
               <div>
