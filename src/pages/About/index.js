@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect, useDebugValue } from 'react'
+import React, { useCallback, useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import api, { apidb } from '../../services/api'
 import { Container, PokemonName, VectorStyled, VectorLink } from './styles'
@@ -15,21 +15,24 @@ const About = () => {
   const { name } = useParams()
   const theme = useTheme()
 
-  const handleGetPokemonStats = useCallback((name) => {
-    try {
-      setIsLoading(true)
-      api.get(`/pokemon/${name.toLowerCase()}`).then((response) => {
-        const result = response.data
-        setPokemonInfo(result)
-        handleGetPokemonWeakness(result?.types[0]?.type?.name)
-        console.log(result)
-      })
-    } catch (error) {
-      console.log(error)
-    } finally {
-      setIsLoading(false)
-    }
-  }, [])
+  const handleGetPokemonStats = useCallback(
+    (name) => {
+      try {
+        setIsLoading(true)
+        api.get(`/pokemon/${name.toLowerCase()}`).then((response) => {
+          const result = response.data
+          setPokemonInfo(result)
+          handleGetPokemonWeakness(result?.types[0]?.type?.name)
+          console.log(result)
+        })
+      } catch (error) {
+        console.log(error)
+      } finally {
+        setIsLoading(false)
+      }
+    },
+    [handleGetPokemonWeakness]
+  )
 
   const handleGetPokemonDescription = useCallback((id) => {
     try {
