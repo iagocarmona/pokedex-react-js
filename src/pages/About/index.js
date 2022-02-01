@@ -15,24 +15,21 @@ const About = () => {
   const { name } = useParams()
   const theme = useTheme()
 
-  const handleGetPokemonStats = useCallback(
-    (name) => {
-      try {
-        setIsLoading(true)
-        api.get(`/pokemon/${name.toLowerCase()}`).then((response) => {
-          const result = response.data
-          setPokemonInfo(result)
-          handleGetPokemonWeakness(result?.types[0]?.type?.name)
-          console.log(result)
-        })
-      } catch (error) {
-        console.log(error)
-      } finally {
-        setIsLoading(false)
-      }
-    },
-    [handleGetPokemonWeakness]
-  )
+  const handleGetPokemonStats = useCallback((name) => {
+    try {
+      setIsLoading(true)
+      api.get(`/pokemon/${name.toLowerCase()}`).then((response) => {
+        const result = response.data
+        setPokemonInfo(result)
+        handleGetPokemonWeakness(result?.types[0]?.type?.name)
+        console.log(result)
+      })
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setIsLoading(false)
+    }
+  }, [])
 
   const handleGetPokemonDescription = useCallback((id) => {
     try {
