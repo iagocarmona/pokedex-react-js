@@ -76,7 +76,7 @@ const About = () => {
 
   const heightFormated = () => {
     if (pokemonInfo.height < 10) {
-      return '0.' + pokemonInfo.height + ' m'
+      return pokemonInfo.height * 10 + ' cm'
     } else {
       let height = pokemonInfo.height / 10
       return height + ' m'
