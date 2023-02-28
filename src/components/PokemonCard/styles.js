@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
 
 export const Container = styled.div`
   display: flex;
@@ -39,7 +38,7 @@ export const Name = styled.h2`
   white-space: nowrap;
 `
 
-export const CardImage = styled(Link)`
+export const CardImage = styled.div`
   display: flex;
   justify-content: right;
   position: relative;

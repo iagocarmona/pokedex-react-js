@@ -31,7 +31,7 @@ const PokemonCard = ({ code, name, badges, image, color }) => {
           </BadgesContainer>
         </CardInfo>
       </CardContainer>
-      <CardImage to={`pokemon/${name}`}>
+      <CardImage>
         <Photo src={image} />
       </CardImage>
     </Container>

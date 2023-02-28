@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavbarContainer, SearchContainer, Title, Search } from './styles'
+import { NavbarContainer, Title } from './styles'
 
 const Navbar = ({ setValue }) => {
   return (
@@ -8,13 +8,13 @@ const Navbar = ({ setValue }) => {
         <div>
           <Title>Pokédex</Title>
         </div>
-        <SearchContainer>
+        {/* <SearchContainer>
           <Search
             type="text"
             placeholder="O que você está procurando ?"
             onChange={(event) => setValue(event.target.value)}
           ></Search>
-        </SearchContainer>
+        </SearchContainer> */}
       </NavbarContainer>
     </>
   )

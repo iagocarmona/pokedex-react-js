@@ -94,7 +94,6 @@ const Home = () => {
   }, [handleGetPokemonStats, pokemonLimit, pokemonOffSet])
 
   useEffect(() => {
-    console.log(searchInput)
     api.get('/pokemon?limit=5000').then((response) => {
       const result = response.data.results
       const searchValue = searchInput.trim().toLowerCase()
@@ -103,7 +102,6 @@ const Home = () => {
         const filteredPokemons = result.filter((pokemon) =>
           pokemon.name.includes(searchValue)
         )
-        console.log(filteredPokemons)
         handleGetPokemonName(filteredPokemons)
       }
     })
@@ -123,7 +121,9 @@ const Home = () => {
       >
         <Background />
         <HomeContainer>
-          <Navbar setValue={setSearchInput} />
+          <Navbar />
+          {/* <Navbar setValue={setSearchInput} /> */}
+
           <CardContainer>
             {isLoading ? <Loading /> : <></>}
             {pokemonInfo ? (
